@@ -35,6 +35,10 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.meoying</groupId>
+            <artifactId>AI-service</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -16,11 +16,14 @@
 
 package com.meoying.ai.demos.web;
 
+import com.meoying.ai.service.LoginService;
+import com.meoying.ai.service.dto.LoginContext;
+import com.meoying.ai.service.dto.UserAccountDTO;
+import com.meoying.ai.service.dto.UserProfileDTO;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
@@ -63,5 +66,18 @@ public class BasicController {
             , @RequestParam(name = "age", defaultValue = "12") Integer age, User user) {
         user.setName("zhangsan");
         user.setAge(18);
+    }
+
+    @Resource
+    private LoginService loginService;
+
+    @RequestMapping("/api/test/register")
+    public void register(@RequestBody UserAccountDTO userAccountDTO, @RequestBody UserProfileDTO userProfileDTO){
+        LoginContext loginContext = LoginContext.builder()
+                .userAccountDTO(userAccountDTO)
+                .userProfileDTO(userProfileDTO)
+                .register(true)
+                .build();
+        loginService.register(loginContext);
     }
 }

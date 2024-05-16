@@ -18,6 +18,7 @@ package com.meoying.ai.demos.web;
 
 import com.meoying.ai.service.LoginService;
 import com.meoying.ai.service.dto.LoginContext;
+import com.meoying.ai.service.dto.Mobile;
 import com.meoying.ai.service.dto.UserAccountDTO;
 import com.meoying.ai.service.dto.UserProfileDTO;
 import org.springframework.stereotype.Controller;
@@ -72,7 +73,22 @@ public class BasicController {
     private LoginService loginService;
 
     @RequestMapping("/api/test/register")
-    public void register(@RequestBody UserAccountDTO userAccountDTO, @RequestBody UserProfileDTO userProfileDTO){
+    public void register(@RequestParam String accountName,
+                         @RequestParam int type,
+                         @RequestParam String mobile,
+                         @RequestParam String password,
+                         @RequestParam String nickname,
+                         @RequestParam int gender){
+        UserAccountDTO userAccountDTO = UserAccountDTO.builder()
+                .accountName(accountName)
+                .mobile(Mobile.builder().number(mobile).build())
+                .password(password)
+                .type(type)
+                .build();
+        UserProfileDTO userProfileDTO = UserProfileDTO.builder()
+                .nickname(nickname)
+                .gender(gender)
+                .build();
         LoginContext loginContext = LoginContext.builder()
                 .userAccountDTO(userAccountDTO)
                 .userProfileDTO(userProfileDTO)

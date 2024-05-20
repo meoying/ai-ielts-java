@@ -10,6 +10,8 @@ public interface UserProfileDao extends JpaRepository<UserProfileEntity, Long> {
 
     List<UserProfileEntity> findByUserIdIn(List<Long> userIds);
 
+    UserProfileEntity findByUserId(Long userId);
+
     List<UserProfileEntity> findByNickname(String nickname);
 
 }

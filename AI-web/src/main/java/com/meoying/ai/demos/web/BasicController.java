@@ -17,10 +17,7 @@
 package com.meoying.ai.demos.web;
 
 import com.meoying.ai.service.LoginService;
-import com.meoying.ai.service.dto.LoginContext;
-import com.meoying.ai.service.dto.Mobile;
-import com.meoying.ai.service.dto.UserAccountDTO;
-import com.meoying.ai.service.dto.UserProfileDTO;
+import com.meoying.ai.service.dto.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -96,4 +93,20 @@ public class BasicController {
                 .build();
         loginService.register(loginContext);
     }
+
+    @RequestMapping("/api/test/login")
+    public UserDTO register(@RequestParam String accountName,
+                            @RequestParam String password,
+                            @RequestParam int type){
+        UserAccountDTO userAccountDTO = UserAccountDTO.builder()
+                .password(password)
+                .accountName(accountName)
+                .build();
+        LoginContext loginContext = LoginContext.builder()
+                .userAccountDTO(userAccountDTO)
+                .type(type)
+                .build();
+        return loginService.login(loginContext);
+    }
+
 }

@@ -18,22 +18,14 @@ public class UserDTO implements Serializable {
     /**
      * 主键
      */
-    private Long id;
+    private Long userId;
     /**
      * 状态
      */
     private Integer status;
 
-    /**
-     * 是否有手机
-     */
-    private Boolean hasMobile;
+    private UserAccountDTO userAccountDTO;
 
-    /**
-     * 是否设置密码
-     */
-    private Boolean hasPassword;
-
-    private String nickname;
+    private UserProfileDTO userProfileDTO;
 
 }

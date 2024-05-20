@@ -34,9 +34,9 @@ public class UserProfileEntity implements Serializable {
      */
     private Integer status;
 
-    private Date createTime;
+    private Date createTime = new Date();
 
-    private Date updateTime;
+    private Date updateTime = new Date();
 
     /** 用户来源类型 */
     private Integer sourceType;

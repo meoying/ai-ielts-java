@@ -7,8 +7,8 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-05-20T15:36:17+0800",
-    comments = "version: 1.4.1.Final, compiler: javac, environment: Java 1.8.0_144 (Oracle Corporation)"
+    date = "2024-06-13T21:01:13+0800",
+    comments = "version: 1.4.1.Final, compiler: javac, environment: Java 11.0.23 (Azul Systems, Inc.)"
 )
 public class UserAccountConverterImpl implements UserAccountConverter {
 
@@ -22,6 +22,7 @@ public class UserAccountConverterImpl implements UserAccountConverter {
 
         userAccountDTO.id( entity.getId() );
         userAccountDTO.accountName( entity.getAccountName() );
+        userAccountDTO.userId( entity.getUserId() );
         userAccountDTO.type( entity.getType() );
         userAccountDTO.password( entity.getPassword() );
         userAccountDTO.createTime( entity.getCreateTime() );
@@ -42,6 +43,7 @@ public class UserAccountConverterImpl implements UserAccountConverter {
 
         userAccountEntity.setId( dto.getId() );
         userAccountEntity.setAccountName( dto.getAccountName() );
+        userAccountEntity.setUserId( dto.getUserId() );
         userAccountEntity.setPassword( dto.getPassword() );
         userAccountEntity.setType( dto.getType() );
 

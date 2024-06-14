@@ -2,17 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.meoying</groupId>
-    <artifactId>AI</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>com.meoying.ai</groupId>
+    <artifactId>ielts</artifactId>
+    <version>${self.version}</version>
     <packaging>pom</packaging>
-    <name>AI</name>
-    <description>Demo project for Spring Boot</description>
+    <name>AI-IELTS</name>
+    <description>AI，让 IELTS 更加简单！</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.6.13</spring-boot.version>
+        <self.version>0.0.1-SNAPSHOT</self.version>
     </properties>
 
     <modules>
@@ -56,18 +57,25 @@
             </dependency>
             <dependency>
                 <groupId>com.meoying</groupId>
-                <artifactId>AI-start</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <artifactId>ielts-starter</artifactId>
+                <version>${self.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.meoying</groupId>
-                <artifactId>AI-web</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <groupId>com.meoying.ai</groupId>
+                <artifactId>ielts-web</artifactId>
+                <version>${self.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.meoying</groupId>
-                <artifactId>AI-service</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <groupId>com.meoying.ai</groupId>
+                <artifactId>ielts-service</artifactId>
+                <version>${self.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.30</version>
+                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -79,8 +87,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
@@ -89,7 +97,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.meoying.ai.AiApplication</mainClass>
+                    <mainClass>com.meoying.ai.ielts.starter.AiApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

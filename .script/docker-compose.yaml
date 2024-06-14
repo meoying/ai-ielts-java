@@ -1,0 +1,12 @@
+services:
+  mysql8:
+    image: mysql:8.0.29
+    command: --default_authentication_plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      # 映射 13316端口
+      - "13316:3306"
+    volumes:
+      # 设置初始化脚本
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql

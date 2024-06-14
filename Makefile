@@ -10,3 +10,7 @@ compose_down:
 install:
 	@docker compose up -d
 	@mvn install
+
+.PHONY: fmt
+fmt:
+	@mvn formatter:format

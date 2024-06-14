@@ -18,10 +18,10 @@ package com.meoying.ai.ielts.web;
 
 import com.meoying.ai.ielts.domain.User;
 import com.meoying.ai.ielts.service.LoginService;
-import com.meoying.ai.ielts.utils.ValidateUtil;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 
 /**
  * @author <a href="mailto:chenxilzx1@gmail.com">theonefx</a>
@@ -37,18 +37,16 @@ public class LoginController {
 
     // http://127.0.0.1:8080/hello?name=lisi
     @RequestMapping("/hello")
-    @ResponseBody
     public Result hello(@RequestParam(name = "name", defaultValue = "unknown user") String name) {
         return new Result("hello, world");
     }
 
-    @RequestMapping("/signup")
-    @ResponseBody
-    public Result accountSignup(@RequestBody SignupReq req) {
-        if(!ValidateUtil.validate(req)) {
-            return new Result("参数错误").setCode(UserBizCode.InvalidSignupParams);
+    @PostMapping("/signup")
+    public Result signup(@Valid @RequestBody SignupReq req) {
+        if(!req.confirmedPwd()) {
+            return new Result("两次输入的密码不一致！").setCode(UserBizCode.InvalidSignupParams);
         }
-        this.loginService.accountSignup(new User()
+        this.loginService.signup(new User()
                 .setEmail(req.getEmail())
                 .setPassword(req.getPassword()));
         return new Result("OK");

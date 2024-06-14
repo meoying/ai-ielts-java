@@ -1,9 +1,9 @@
 package com.meoying.ai.ielts.dao.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Data

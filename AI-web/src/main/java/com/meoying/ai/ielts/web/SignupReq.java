@@ -1,18 +1,18 @@
 package com.meoying.ai.ielts.web;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 
 @Data
 public class SignupReq {
-    @NotNull
-    @Email
+    @Email(message = "请输入邮箱！")
     private String email;
-    @NotNull
+    @NotEmpty(message = "请输入密码！")
     private String password;
-    @NotNull
+    @NotEmpty(message = "请确认密码！")
     private String confirmPwd;
 
     public boolean confirmedPwd() {

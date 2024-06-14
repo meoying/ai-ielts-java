@@ -1,6 +1,6 @@
 package com.meoying.ai.ielts.stater;
 
-import com.meoying.ai.ielts.starter.AiApplication;
+import com.meoying.ai.ielts.AiApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

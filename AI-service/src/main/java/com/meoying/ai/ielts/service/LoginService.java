@@ -2,10 +2,11 @@ package com.meoying.ai.ielts.service;
 
 import com.meoying.ai.ielts.dao.entity.User;
 import com.meoying.ai.ielts.dao.UserDAO;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 
 @Service
 @Slf4j
@@ -13,11 +14,23 @@ public class LoginService {
     @Resource
     private UserDAO userAccountDao;
 
-    public void accountSignup(com.meoying.ai.ielts.domain.User user) {
+    public void signup(com.meoying.ai.ielts.domain.User user) {
         userAccountDao.save(new User()
-                        .setPassword(user.getPassword())
+                        .setPassword(this.encryptPwd(user.getPassword()))
                 .setEmail(user.getEmail()));
     }
+
+    private String encryptPwd(String pwd) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return  passwordEncoder.encode(pwd);
+    }
+
+    private boolean comparePwd(String input, String pwd) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        return passwordEncoder.matches(input, pwd);
+    }
+
+
 //    public boolean register(LoginContext loginContext){
 //        if(Objects.isNull(loginContext) || Objects.isNull(loginContext.getRegister()) || Boolean.FALSE.equals(loginContext.getRegister())){
 //            throw new IgnoredException(400,"参数异常");

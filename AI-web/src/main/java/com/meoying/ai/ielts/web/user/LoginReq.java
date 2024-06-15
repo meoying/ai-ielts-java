@@ -1,14 +1,11 @@
-package com.meoying.ai.ielts.domain;
+package com.meoying.ai.ielts.web.user;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class User {
-    private long id;
+public class LoginReq {
     private String email;
     private String password;
-    private String nickname;
-    private String avatar;
 }

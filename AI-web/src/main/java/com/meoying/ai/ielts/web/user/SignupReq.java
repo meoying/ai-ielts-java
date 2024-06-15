@@ -1,4 +1,4 @@
-package com.meoying.ai.ielts.web;
+package com.meoying.ai.ielts.web.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

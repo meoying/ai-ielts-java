@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Table(name = "users",
         uniqueConstraints = @UniqueConstraint(columnNames = {"email"}),
         indexes = {@Index(columnList = "mobile", unique = true)})
-public class User implements Serializable {
+public class UserEntity implements Serializable {
     /**
      * id
      */

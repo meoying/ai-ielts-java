@@ -1,5 +1,8 @@
 package com.meoying.ai.ielts;
 
+import com.meoying.ai.ielts.web.filter.LoginFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,4 +16,12 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins("http://localhost:8000");
     }
 
+
+    @Bean
+    public FilterRegistrationBean<LoginFilter> loggingFilter() {
+        FilterRegistrationBean<LoginFilter> registrationBean = new FilterRegistrationBean<>();
+        registrationBean.setFilter(new LoginFilter());
+        registrationBean.addUrlPatterns("/*"); // Specify URL patterns to filter
+        return registrationBean;
+    }
 }

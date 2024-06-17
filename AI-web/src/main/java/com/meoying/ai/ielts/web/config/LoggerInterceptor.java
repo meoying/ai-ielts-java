@@ -5,7 +5,6 @@ import com.meoying.ai.ielts.utils.JsonUtils;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import javafx.util.Pair;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +47,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
             String reqBodyMaxLen = request.getParameter(REQ_BODY_MAX_LEN_KEY);
             String reqUrlMaxLen = request.getParameter(REQ_URL_MAX_LEN_KEY);
             try {
-                int reqBodyMaxLenValue = Integer.valueOf(reqBodyMaxLen);
-                int reqUrlMaxLenValue = Integer.valueOf(reqUrlMaxLen);
+                int reqBodyMaxLenValue = StringUtils.isNotBlank(reqBodyMaxLen) ? Integer.valueOf(reqBodyMaxLen) : 0;
+                int reqUrlMaxLenValue = StringUtils.isNotBlank(reqUrlMaxLen) ? Integer.valueOf(reqUrlMaxLen) : 0;
                 requestLoggerInfo.setReqBodyMaxLenValue(reqBodyMaxLenValue);
                 requestLoggerInfo.setReqUrlMaxLenValue(reqUrlMaxLenValue);
                 requestLoggerInfo.setRequestParametersString(JsonUtils.toJson(request.getParameterMap()));
@@ -72,8 +71,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
             if(StringUtils.isNotBlank(body)){
                 try {
                     JSONObject jsonObject = JSONObject.parseObject(body);
-                    int reqBodyMaxLenValue = (int) jsonObject.get(REQ_BODY_MAX_LEN_KEY);
-                    int reqUrlMaxLenValue = (int) jsonObject.get(REQ_URL_MAX_LEN_KEY);
+                    int reqBodyMaxLenValue = Objects.nonNull(jsonObject.get(REQ_BODY_MAX_LEN_KEY)) ? (int) jsonObject.get(REQ_BODY_MAX_LEN_KEY) : 0;
+                    int reqUrlMaxLenValue =  Objects.nonNull(jsonObject.get(REQ_URL_MAX_LEN_KEY)) ? (int) jsonObject.get(REQ_URL_MAX_LEN_KEY) : 0;
                     requestLoggerInfo.setReqBodyMaxLenValue(reqBodyMaxLenValue);
                     requestLoggerInfo.setReqUrlMaxLenValue(reqUrlMaxLenValue);
                     requestLoggerInfo.setRequestParametersString(body);

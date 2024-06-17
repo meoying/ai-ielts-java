@@ -34,13 +34,14 @@ public class LoggerInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        log.info("{} 路径调用开始， 方法：{} , 入参： {}", requestLoggerInfo.getReqUrlMaxLenValue() == -1 ? uri : uri.substring(requestLoggerInfo.getReqUrlMaxLenValue()),
-                handler, requestLoggerInfo.getReqBodyMaxLenValue() == -1 ? requestLoggerInfo.getRequestParametersString() : requestLoggerInfo.getRequestParametersString().substring(requestLoggerInfo.getReqBodyMaxLenValue()));
+        log.info("{} 路径调用开始， 方法：{} , 入参： {}", requestLoggerInfo.getReqUrlMaxLenValue() == -1 ? uri : uri.substring(0,requestLoggerInfo.getReqUrlMaxLenValue()),
+                handler, requestLoggerInfo.getReqBodyMaxLenValue() == -1 ? requestLoggerInfo.getRequestParametersString() : requestLoggerInfo.getRequestParametersString().substring(0,requestLoggerInfo.getReqBodyMaxLenValue()));
 
         return true;
     }
 
     private RequestLoggerInfo getRequestLoggerInfo(HttpServletRequest request){
+        String uri = request.getRequestURI();
         String method = request.getMethod();
         RequestLoggerInfo requestLoggerInfo = RequestLoggerInfo.builder().build();
         if(HttpMethod.GET.name().equals(method) ){
@@ -49,6 +50,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
             try {
                 int reqBodyMaxLenValue = StringUtils.isNotBlank(reqBodyMaxLen) ? Integer.valueOf(reqBodyMaxLen) : 0;
                 int reqUrlMaxLenValue = StringUtils.isNotBlank(reqUrlMaxLen) ? Integer.valueOf(reqUrlMaxLen) : 0;
+                reqUrlMaxLenValue = Math.min(reqUrlMaxLenValue, uri.length());
+                reqBodyMaxLenValue = Math.min(reqBodyMaxLenValue,JsonUtils.toJson(request.getParameterMap()).length());
                 requestLoggerInfo.setReqBodyMaxLenValue(reqBodyMaxLenValue);
                 requestLoggerInfo.setReqUrlMaxLenValue(reqUrlMaxLenValue);
                 requestLoggerInfo.setRequestParametersString(JsonUtils.toJson(request.getParameterMap()));
@@ -73,6 +76,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
                     JSONObject jsonObject = JSONObject.parseObject(body);
                     int reqBodyMaxLenValue = Objects.nonNull(jsonObject.get(REQ_BODY_MAX_LEN_KEY)) ? (int) jsonObject.get(REQ_BODY_MAX_LEN_KEY) : 0;
                     int reqUrlMaxLenValue =  Objects.nonNull(jsonObject.get(REQ_URL_MAX_LEN_KEY)) ? (int) jsonObject.get(REQ_URL_MAX_LEN_KEY) : 0;
+                    reqUrlMaxLenValue = Math.min(reqUrlMaxLenValue, uri.length());
+                    reqBodyMaxLenValue = Math.min(reqBodyMaxLenValue,body.length());
                     requestLoggerInfo.setReqBodyMaxLenValue(reqBodyMaxLenValue);
                     requestLoggerInfo.setReqUrlMaxLenValue(reqUrlMaxLenValue);
                     requestLoggerInfo.setRequestParametersString(body);
@@ -93,8 +98,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
         private int reqBodyMaxLenValue = 0;
         @Builder.Default
         private int reqUrlMaxLenValue = 0;
-
-        private String requestParametersString;
+        @Builder.Default
+        private String requestParametersString = Strings.EMPTY;
     }
 
     @Override
@@ -106,8 +111,8 @@ public class LoggerInterceptor implements HandlerInterceptor {
         }
         String uri = request.getRequestURI();
 
-        log.info("{} 路径调用结束， 方法：{} , 入参： {}, 出参 : {}", requestLoggerInfo.getReqUrlMaxLenValue() == -1 ? uri : uri.substring(requestLoggerInfo.getReqUrlMaxLenValue()),
-                handler, requestLoggerInfo.getReqBodyMaxLenValue() == -1 ? requestLoggerInfo.getRequestParametersString() : requestLoggerInfo.getRequestParametersString().substring(requestLoggerInfo.getReqBodyMaxLenValue()),modelAndView);
+        log.info("{} 路径调用结束， 方法：{} , 入参： {}, 出参 : {}", requestLoggerInfo.getReqUrlMaxLenValue() == -1 ? uri : uri.substring(0,requestLoggerInfo.getReqUrlMaxLenValue()),
+                handler, requestLoggerInfo.getReqBodyMaxLenValue() == -1 ? requestLoggerInfo.getRequestParametersString() : requestLoggerInfo.getRequestParametersString().substring(0,requestLoggerInfo.getReqBodyMaxLenValue()),modelAndView);
     }
 
     @Override

@@ -1,46 +1,41 @@
-我需要你对我的 IELTS 写作进行评分，并指出其中的优点和缺点。同时，你还需要提供一个改进后的版本，帮助我提升写作水平。
+我需要你为我的 IELTS 写作进行评分。
 
-你将遵循以下步骤。
+评分标准将严格遵循 IELTS Band Descriptor，确保评价公正且严谨。
 
-第一步，对文章进行评分。
-评分标准：
-评分将基于以下标准进行详细评价，并给出具体分数：
-1. 任务回应（Task Response, 占总分的25%）：
-    - 观点是否符合题意：文章的观点是否紧扣题目要求。
-    - 观点是否明确：文章的观点是否清晰并有力地表达出来。
-    - 观点是否有深度：观点是否能够体现作者的思辨、逻辑、分析和推理能力。
-    - 论据是否充分：每个论据是否充分且有效地论证了观点。
-    - 证据是否足以支撑观点：评估文章中的证据是否充分且有力地支持了观点。
-2. 连贯与衔接（Coherence and Cohesion, 占总分的25%）：文章是否结构清晰，段落间的过渡是否自然。
-    1. 每个段落是否有明确的观点、论据；
-    2. 段落之间的过渡是否自然，段落之间是否构成明确的因果、递进等逻辑关系；
-    3. 段落内部的句子过渡是否流畅、自然，句子之间是否符合逻辑，以及逻辑关系是否明确；
-3. 词汇资源（Lexical Resources, 占总分的25%）：词汇使用是否多样、准确，是否使用了高级词汇。
-4. 语法范围与准确性（Grammatical Range and Accuracy, 占总分的25%）：语法使用是否多样且准确，是否使用了复杂长句。
+你需要做三件事：
 
-评分与加权平均计算：
-1. 对每一项评分标准（任务回应、连贯与衔接、词汇资源、语法范围与准确性）分别给出具体分数（满分为9分）。
-2. 先给出每一项标准的原始分数，而后根据各项评分的权重（每项25%），计算加权平均分作为总分数。
+第一件事，对文章进行评分，根据 IELTS 的评分细则进行评分，给出四项标准的具体分数，最终给出最终分数。
 
-第二步，对文章进行分析和改进。
-分析与改进流程：
+第二件事，对文章进行分析和修改，按照以下步骤输出内容。
 1. 提取大纲：
-    1. 总结文章的主要观点和支撑论据。
-    2. 总结文章的每一个段落的核心观点。
-2. 逐句分析：对文章的每一句指出具体问题和改进建议，并解释每个改进的理由。
-3. 最后输出改正之后的文章
+   1. 首先总结文章的主要观点，明确写出文章的观点是什么
+   2. 罗列文章的论据，
+      1. 论据的内容
+      2. 论据是否充分
+      3. 论据不充分的理由
+2. 按照以下步骤对每一句进行分析：
+   1. 如果有语法错误，指出语法错误
+   2. 如果可以替换高级词汇，替换高级词汇
+   3. 分析上一句和本句的联系，如果衔接、过度不自然，使用更加自然的过度
+   4. 在前面三点的基础上，重写整个句子，输出重写后的句子
 
-第三步，提供范文。
-1. 提供候选观点：提供三个比原文更加符合题意的候选观点
-2. 选择第一个候选观点，并且为这个观点撰写大纲，大纲包含：
-    1. 核心观点
-    2. 主要论据
-    3. 分成几个段落，以及每个段落的内容
-3. 按照大纲写一个范文
-4. 总结范文与原版本相比最突出的三点改进之处。
+第三件事，提供范文。
+1. 提供候选观点。针对题目，从不同的角度（如正方、反方和中立者）提供不同的观点。要求观点必须明确、深刻，最好有独到的见解。并且为观点提供三个论据；
+2. 选择第一个候选观点，写一篇范文；
+3. 为这篇范文打分；
 
-注意事项：
-1. 输出内容将控制在 100000 token 以内，以确保信息完整且详尽。
-2. 评分标准将严格遵循 IELTS 写作评分准则，确保评价公正且严谨。
 
-当你准备了，提示开始，我就会提供 IELTS 的题目和我的作文。
+下面是 IELTS 的题目，和我的写作：
+
+题目：Some people believe that it is good to share as much information as possible in scientific research, business and the academic world. Others believe that some information is too important or too valuable to be shared freely.
+Discuss both these views and give your own opinion.
+
+
+正文：
+In the present-day society, there have been conflicting views on whether it is good to share as much information as possible in scientific research, business and academic world. Although it has been suggested that some information is too important or too valuable to be shared freely. I am still of the opinion that sharing information in different areas for free is worth.
+
+The main reason of my idea is that sharing as much information as possible can help to protect the environment. It is commonly believed that protectng our environment is a duty to government, but also involving many areas. If everyone can share different useful informations, which means that we can find many measures to grapple with the environment issues. For example, an internet company shared geography informations for firemen to properly tackle forest fire and helping large  wild animals to return and live wild.
+
+Others, however, may tend to believe that there is no free lunch. This is because following the money trail is always a golden route. As a result that some information is not for free should be a good way to encourage creating. Take my friend peter as an example. He have a IT company, not only maintaining the daily pay, but also creating many new useful technology by selling imfor mations.
+
+Conclusion, I personally think that sharing information for free is worth, because it is good for cooperation, despite the fact that some information is too important to be shared freely can encourage creating. 

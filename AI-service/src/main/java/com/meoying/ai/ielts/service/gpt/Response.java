@@ -7,4 +7,6 @@ import lombok.Data;
 @Builder
 public class Response {
     private String answer;
+    // tokens 数量
+    private int tokens;
 }

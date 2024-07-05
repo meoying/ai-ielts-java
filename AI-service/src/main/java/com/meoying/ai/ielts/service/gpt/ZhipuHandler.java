@@ -1,6 +1,7 @@
 package com.meoying.ai.ielts.service.gpt;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.meoying.ai.ielts.service.gpt.okhttp.HttpService;
 
@@ -19,8 +20,11 @@ import java.util.*;
 public class ZhipuHandler implements Handler{
     @Autowired
     private HttpService httpService;
+
+    // TODO 做成配置的，从配置文件里面读取
+    private long price = 10;
     @Override
-    public Response handle(Request req, HandlerContext context) {
+    public Response handle(Request req) {
         ZhipuInfo zhipu = ZhipuInfo.builder()
                 .content(req.getPrompt())
                 .role("user")
@@ -35,11 +39,13 @@ public class ZhipuHandler implements Handler{
         if(Objects.nonNull(message) && !CollectionUtils.isEmpty(message.getChoices()) && Objects.nonNull(message.getChoices().get(0)) && Objects.nonNull(message.getChoices().get(0).message)){
             answer = message.getChoices().get(0).message.content;
         }
-        Response response = Response.builder()
+        // 先乘后除
+        long amount = Math.ceilDiv(message.usage.totalTokens * price, 1000);
+        return Response.builder()
                 .answer(answer)
+                .tokens(message.usage.totalTokens)
+                .amount(amount)
                 .build();
-        context.setZhiPuResponse(response);
-        return response;
     }
 
 
@@ -63,6 +69,7 @@ public class ZhipuHandler implements Handler{
         private String id;
         private String model;
         private String request_id;
+        private Usage usage;
     }
 
     @Data
@@ -70,6 +77,12 @@ public class ZhipuHandler implements Handler{
         private String finish_reason;
         private int index;
         private Message message;
+    }
+
+    @Data
+    private static class Usage {
+        @JsonAlias("total_tokens")
+        private int totalTokens;
     }
 
     @Data

@@ -9,4 +9,6 @@ public class Response {
     private String answer;
     // tokens 数量
     private int tokens;
+    // 本次调用的花费
+    private long amount;
 }

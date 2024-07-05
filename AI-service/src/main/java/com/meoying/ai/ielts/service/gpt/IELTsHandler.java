@@ -5,7 +5,7 @@ package com.meoying.ai.ielts.service.gpt;
 // 而后你会合并三个 resp 为一个
 public class IELTsHandler implements Handler{
     @Override
-    public Response handle(Request req) {
+    public Response handle(Request req, HandlerContext context) {
         return null;
     }
 

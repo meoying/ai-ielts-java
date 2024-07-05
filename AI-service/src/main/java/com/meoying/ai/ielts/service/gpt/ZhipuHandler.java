@@ -20,7 +20,7 @@ public class ZhipuHandler implements Handler{
     @Autowired
     private HttpService httpService;
     @Override
-    public Response handle(Request req) {
+    public Response handle(Request req, HandlerContext context) {
         ZhipuInfo zhipu = ZhipuInfo.builder()
                 .content(req.getPrompt())
                 .role("user")
@@ -35,9 +35,11 @@ public class ZhipuHandler implements Handler{
         if(Objects.nonNull(message) && !CollectionUtils.isEmpty(message.getChoices()) && Objects.nonNull(message.getChoices().get(0)) && Objects.nonNull(message.getChoices().get(0).message)){
             answer = message.getChoices().get(0).message.content;
         }
-        return Response.builder()
+        Response response = Response.builder()
                 .answer(answer)
                 .build();
+        context.setZhiPuResponse(response);
+        return response;
     }
 
 

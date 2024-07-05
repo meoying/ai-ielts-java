@@ -10,4 +10,8 @@ public class Request {
     private String prompt;
     // 用户输入
     private String input;
+    //场景
+    private String biz;
+    //用户id
+    private long uid;
 }

@@ -13,7 +13,7 @@ public class GPTService implements Handler {
         this.root = root;
     }
     @Override
-    public Response handle(Request req) {
-        return root.handle(req);
+    public Response handle(Request req, HandlerContext context) {
+        return root.handle(req, context);
     }
 }

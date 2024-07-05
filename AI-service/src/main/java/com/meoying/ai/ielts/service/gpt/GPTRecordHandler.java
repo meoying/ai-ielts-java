@@ -4,9 +4,11 @@ import com.meoying.ai.ielts.dao.GPTRecordDAO;
 import com.meoying.ai.ielts.dao.entity.GPTRecordEntity;
 import com.meoying.ai.ielts.utils.JsonUtils;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 // GPTRecordHandler
 // 将 GPT 的调用结果记录到数据库里面
+@Service
 public class GPTRecordHandler implements Handler{
     @Resource
     private GPTRecordDAO gptRecordDAO;

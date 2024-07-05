@@ -24,6 +24,6 @@ public class HelloController {
     public Response test(@RequestParam(value = "prompt") String prompt){
         HandlerContext handlerContext = HandlerContext.getCurrentContext();
         return zhipuHandler.handle(Request.builder()
-                        .prompt(prompt).build(),handlerContext);
+                        .prompt(prompt).build());
     }
 }

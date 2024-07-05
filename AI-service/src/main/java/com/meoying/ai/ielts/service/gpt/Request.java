@@ -1,10 +1,14 @@
 package com.meoying.ai.ielts.service.gpt;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Request {
     // 提示
     private String prompt;

@@ -11,6 +11,6 @@ public interface AccountDAO extends JpaRepository<AccountEntity, Long> {
     AccountEntity findByUid(long uid);
 
     @Modifying
-    @Query("update AccountEntity en set en.balance = ?1 where en.balance = ?2 and en.id = ?3 ")
-    int setBalanceById(long newBalance, long balance, long id);
+    @Query("update AccountEntity en set en.balance = en.balance - price?1 where en.balance = ?2 and en.id = ?3 ")
+    int setBalanceById(long price, long balance, long id);
 }

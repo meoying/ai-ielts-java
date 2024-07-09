@@ -22,6 +22,6 @@ public class HelloController {
     @GetMapping("/test/zhipu")
     public Response test(@RequestParam(value = "prompt") String prompt){
         return zhipuHandler.handle(Request.builder()
-                        .prompt(prompt).build(), );
+                        .prompt(prompt).build());
     }
 }

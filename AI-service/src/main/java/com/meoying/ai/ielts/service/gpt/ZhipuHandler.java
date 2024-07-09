@@ -17,7 +17,7 @@ import java.util.*;
 // 编写单元测试，确保能够调通
 // 是用 resource 里面的 prompt 作为 prompt
 @Service
-public class ZhipuHandler implements Handler{
+public class ZhipuHandler extends AbstractHandler {
     @Autowired
     private HttpService httpService;
 

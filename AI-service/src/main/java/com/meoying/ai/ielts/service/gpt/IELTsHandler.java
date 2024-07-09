@@ -18,9 +18,9 @@ public class IELTsHandler implements Handler{
     private String referencePrompt;
     @Override
     public Response handle(Request req) {
-        Request scoreReq = new Request(this.scorePrompt, req.getInput());
-        Request analysisReq = new Request(this.analysisPrompt, req.getInput());
-        Request referenceReq = new Request(this.referencePrompt, req.getInput());
+        Request scoreReq = Request.builder().prompt(scorePrompt).input(req.getInput()).build();
+        Request analysisReq = Request.builder().prompt(analysisPrompt).input(req.getInput()).build();
+        Request referenceReq = Request.builder().prompt(referencePrompt).input(req.getInput()).build();
 
         Response scoreResp = next.handle(scoreReq);
         Response analysisResp = next.handle(analysisReq);

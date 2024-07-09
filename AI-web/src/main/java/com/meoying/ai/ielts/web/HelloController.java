@@ -1,5 +1,6 @@
 package com.meoying.ai.ielts.web;
 
+import com.meoying.ai.ielts.service.gpt.HandlerContext;
 import com.meoying.ai.ielts.service.gpt.Request;
 import com.meoying.ai.ielts.service.gpt.Response;
 import com.meoying.ai.ielts.service.gpt.ZhipuHandler;
@@ -21,6 +22,7 @@ public class HelloController {
     private ZhipuHandler zhipuHandler;
     @GetMapping("/test/zhipu")
     public Response test(@RequestParam(value = "prompt") String prompt){
+        HandlerContext handlerContext = HandlerContext.getCurrentContext();
         return zhipuHandler.handle(Request.builder()
                         .prompt(prompt).build());
     }

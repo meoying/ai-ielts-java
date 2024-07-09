@@ -1,11 +1,16 @@
 package com.meoying.ai.ielts.dao.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
+@Data
+@Builder
+@Table(name = "gptRecord",
+        indexes = {@Index(columnList = "uid", unique = true)})
 public class GPTRecordEntity implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id
@@ -16,12 +21,20 @@ public class GPTRecordEntity implements Serializable {
     // 业务场景
     private String biz;
 
+    //请求
+    private String request;
+
+    //结果
+    private String response;
+
     /**
      * 创建时间
      */
-    private Long ctime;
+    @Builder.Default
+    private Long ctime = new Date().getTime();
     /**
      * 更新时间
      */
-    private Long utime;
+    @Builder.Default
+    private Long utime = new Date().getTime();
 }

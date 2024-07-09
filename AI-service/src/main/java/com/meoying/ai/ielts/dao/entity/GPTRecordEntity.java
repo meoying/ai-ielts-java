@@ -9,8 +9,9 @@ import java.util.Date;
 
 @Data
 @Builder
-@Table(name = "gptRecord",
+@Table(name = "grp_records",
         indexes = {@Index(columnList = "uid", unique = true)})
+@Entity
 public class GPTRecordEntity implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id

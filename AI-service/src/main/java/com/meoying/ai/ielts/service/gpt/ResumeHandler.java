@@ -21,7 +21,7 @@ public class ResumeHandler extends AbstractHandler{
         Response response = null;
         for (Handler handler : handlerList){
             try {
-                response = handler.handle(req);
+                return handler.handle(req);
             }catch (Exception e){
                 log.error("handle fail!handler {}, req {}", JsonUtils.toJson(handler), JsonUtils.toJson(req), e);
             }

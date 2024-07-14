@@ -18,7 +18,6 @@ public class ResumeHandler extends AbstractHandler{
 
     @Override
     public Response handle(Request req) {
-        Response response = null;
         for (Handler handler : handlerList){
             try {
                 return handler.handle(req);

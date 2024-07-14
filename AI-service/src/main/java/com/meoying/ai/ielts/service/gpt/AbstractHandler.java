@@ -6,8 +6,4 @@ public abstract class AbstractHandler implements Handler{
     public void setNext(Handler next) {
         this.next = next;
     }
-
-    public Response retryHandle(Handler handler,Request req){
-        return null;
-    }
 }

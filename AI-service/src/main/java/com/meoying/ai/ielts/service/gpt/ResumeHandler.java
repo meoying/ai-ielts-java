@@ -12,13 +12,8 @@ public class ResumeHandler extends AbstractHandler{
 
     private List<Handler> handlerList;
 
-    @Resource
-    private RetryHandler retryHandler;
-
-    public ResumeHandler(ZhipuHandler zhipu, GPTRecordHandler gptRecordHandler) {
-        zhipu.setNext(gptRecordHandler);
-        handlerList.add(zhipu);
-        handlerList.add(gptRecordHandler);
+    public ResumeHandler(List<Handler> handlerList) {
+        this.handlerList = handlerList;
     }
 
     @Override

@@ -21,6 +21,8 @@ public class ZhipuHandler extends AbstractHandler {
     @Autowired
     private HttpService httpService;
 
+    private static final String URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
+
     // TODO 做成配置的，从配置文件里面读取
     private long price = 10;
     @Override
@@ -33,8 +35,12 @@ public class ZhipuHandler extends AbstractHandler {
                 .messages(Arrays.asList(zhipu))
                 .model("glm-4")
                 .build();
+        Map<String,String> headers = new HashMap<>();
+        headers.put("Content-Type","application/json");
+        headers.put("Authorization","Bearer f6f8e090a506b189b557ae10dc360462.gFDGuD9ZJLdfRuwP");
+
         String json = JSON.toJSONString(zhipuRequest);
-        ZhipuResponse message = httpService.doHttpPost("https://open.bigmodel.cn/api/paas/v4/chat/completions", json, new TypeReference<ZhipuResponse>() {});
+        ZhipuResponse message = httpService.doHttpPost(URL, json, headers, new TypeReference<ZhipuResponse>() {});
         String answer = "";
         if(Objects.nonNull(message) && !CollectionUtils.isEmpty(message.getChoices()) && Objects.nonNull(message.getChoices().get(0)) && Objects.nonNull(message.getChoices().get(0).message)){
             answer = message.getChoices().get(0).message.content;

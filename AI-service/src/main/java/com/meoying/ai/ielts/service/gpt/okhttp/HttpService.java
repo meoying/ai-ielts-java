@@ -1,22 +1,21 @@
 package com.meoying.ai.ielts.service.gpt.okhttp;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.meoying.ai.ielts.utils.JsonUtils;
 import io.micrometer.common.util.StringUtils;
-import lombok.Builder;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 @Slf4j
 public class HttpService {
-    public <T> T doHttpPost(String url, String json, TypeReference<T> typeReference){
+    public <T> T doHttpPost(String url, String json, Map<String,String> headers, TypeReference<T> typeReference){
         try {
-            Response response = HttpClient.httpPost(url, json);
+            Response response = HttpClient.httpPost(url, json, headers);
             if (response.code() == HttpStatus.SC_OK){
                 String responseTxt = response.body().string();
                 log.info("http request return. responseTxt  = {}",responseTxt);

@@ -1,12 +1,18 @@
 package com.meoying.ai.ielts.dao.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 @Entity
 @Table(name = "accounts",

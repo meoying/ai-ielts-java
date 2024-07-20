@@ -33,6 +33,7 @@ public class ResumeWeightHandler extends AbstractHandler {
                 WeightRoundRobinUtils.addWeight(handler, 1);
                 return response;
             } catch (Exception e){
+                //区分超时 和 io异常
                 WeightRoundRobinUtils.resetWeight(handler, 1);
                 log.error("handle fail with exception!handler {}, req {}", JsonUtils.toJson(handler), JsonUtils.toJson(req), e);
             }

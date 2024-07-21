@@ -18,12 +18,12 @@ public class CreditHandler extends AbstractHandler{
         // 1. 验证用户的余额大于 0，但是没办法验证够不够
         AccountEntity account = accountDAO.findByUid(req.getUid());
         if(Objects.isNull(account) || account.getBalance().compareTo(0L) <= 0){
-            return null;
+            throw new CreditInsufficientException(req.getUid());
         }
         // 执行
         Response resp = next.handle(req);
         // 2. 扣减 tokens 对应的余额，也就是 response 中的 amount
-        accountDAO.setBalanceById(resp.getAmount(), account.getId());
+        accountDAO.updateBalance(-resp.getAmount(), account.getId());
         return resp;
     }
 }

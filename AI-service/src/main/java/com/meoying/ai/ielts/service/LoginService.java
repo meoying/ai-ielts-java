@@ -39,7 +39,7 @@ public class LoginService {
      */
     public User login(String email, String password) {
         UserEntity u = this.userDAO.getUserByEmail(email);
-        if(this.comparePwd(password, u.getPassword())) {
+        if(u != null && this.comparePwd(password, u.getPassword())) {
             // 登录成功
             return new User().setId(u.getId());
         }

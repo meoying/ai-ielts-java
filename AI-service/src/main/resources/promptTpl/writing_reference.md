@@ -14,5 +14,4 @@
 4. 按照 IELTS 的评分标准对范文进行评分
 
 这是题目：
-Some people believe that it is good to share as much information as possible in scientific research, business and the academic world. Others believe that some information is too important or too valuable to be shared freely.
-Discuss both these views and give your own opinion.
+%s

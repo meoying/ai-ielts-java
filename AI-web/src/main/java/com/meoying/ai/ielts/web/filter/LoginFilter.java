@@ -28,7 +28,7 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
-        if("OPTIONS".equalsIgnoreCase(req.getMethod()) || publicPaths.contains(req.getServletPath())) {
+        /*if("OPTIONS".equalsIgnoreCase(req.getMethod()) || publicPaths.contains(req.getServletPath())) {
             chain.doFilter(request, response);
             return;
         }
@@ -38,7 +38,7 @@ public class LoginFilter implements Filter {
             HttpServletResponse resp = (HttpServletResponse) response;
             resp.setStatus(401);
             return;
-        }
+        }*/
         chain.doFilter(req, response);
     }
 }

@@ -6,6 +6,7 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 @Slf4j
 public class HttpClient {
@@ -21,18 +22,29 @@ public class HttpClient {
 
     public static final MediaType JSON_TYPE = MediaType.get("application/json");
 
-    public static Response httpPost(String url, String json) throws IOException{
-        return doPost(url, json);
+    public static Response httpPost(String url, String json,Map<String,String> headerMap) throws IOException{
+        return doPost(url, json, headerMap);
     }
 
-    private static Response doPost(String url, String json) throws IOException{
+    private static Response doPost(String url, String json,Map<String,String> headerMap) throws IOException{
         RequestBody body = RequestBody.create(json, JSON_TYPE);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
-                .addHeader("Content-Type","application/json")
-                .addHeader("Authorization","Bearer f6f8e090a506b189b557ae10dc360462.gFDGuD9ZJLdfRuwP")
+                .headers(buildHeaders(headerMap))
                 .build();
         return getInstance().newCall(request).execute();
+    }
+
+    private static Headers buildHeaders(Map<String,String> headerMap){
+        Headers headers = null;
+        Headers.Builder headerBuilder = new Headers.Builder();
+        if(Objects.nonNull(headerMap)){
+            headerMap.entrySet().stream().forEach(entry->{
+                headerBuilder.add(entry.getKey(), entry.getValue());
+            });
+        }
+        headers = headerBuilder.build();
+        return headers;
     }
 }

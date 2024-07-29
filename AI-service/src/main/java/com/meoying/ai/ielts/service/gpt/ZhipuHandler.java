@@ -1,9 +1,5 @@
 package com.meoying.ai.ielts.service.gpt;
 
-import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.meoying.ai.ielts.service.gpt.okhttp.HttpService;
 
 import com.zhipu.oapi.ClientV4;
 import com.zhipu.oapi.Constants;
@@ -12,11 +8,8 @@ import com.zhipu.oapi.service.v4.model.ChatMessage;
 import com.zhipu.oapi.service.v4.model.ModelApiResponse;
 import com.zhipu.oapi.service.v4.model.ModelData;
 import jakarta.annotation.PostConstruct;
-import jakarta.annotation.Resource;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
